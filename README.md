@@ -1,9 +1,70 @@
-- Hi, I’m @notlogick
-- I’m interested in bun recape
-- I’m currently learning in school
-- How to reach me gmail: linacxlinfamily@gmail.com
+local targeting = false 
+function main()
+    if not isSampfuncsLoaded() or not isSampLoaded() then
+        return
+    end
+    while not isSampAvailable() do
+        wait(0)
+    end
+    sampAddChatMessage("Hello World!", 0xFFFFFFFF)
+    while true do
+        wait(0)
+        local result, ped = getCharPlayerIsTargeting(playerPed)
+        if result and not targeting then 
+            local result2, id = sampGetPlayerIdByCharHandle(ped)
+            if result2 then
+                local nickname = sampGetPlayerNickname(id)
+                local score = sampGetPlayerScore(id)
+                sampAddChatMessage(string.format("%s[%d] has an account %d", nickname, id, score), -1)
+                targeting = true 
+            end
+        elseif not result and targeting then 
+            targeting = false
+        end
+    end
+end
 
-<!---
-notlogick/notlogick is a ✨ special ✨ repository because its `README.md` (this file) appears on your GitHub profile.
-You can click the Preview link to take a look at your changes.
---->
+
+function main()
+    if not isSampfuncsLoaded() or not isSampLoaded() then
+        return
+    end
+    while not isSampAvailable() do
+        wait(0)
+    end
+
+    sampRegisterChatCommand("toster", tosterCallBack) 
+
+    wait(-1) 
+end
+
+function tosterCallBack(params)
+    sampAddChatMessage("Call!", -1)
+end
+
+sampAddChatMessage(params, -1)
+
+(error) test.lua: opcode '0AF8' call caused an unhandled exception
+
+
+https://lua.org.ru/manual_ru.html
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
